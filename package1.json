@@ -1,0 +1,124 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "@mdslab/wstun",
+        "scope": "@mdslab",
+        "escapedName": "@mdslab%2fwstun",
+        "name": "@mdslab/wstun",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/media/datos/app/nodejs/proxyclient"
+    ]
+  ],
+  "_from": "@mdslab/wstun@latest",
+  "_id": "@mdslab/wstun@1.0.3",
+  "_inCache": true,
+  "_location": "/@mdslab/wstun",
+  "_nodeVersion": "7.8.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/wstun-1.0.3.tgz_1511451073933_0.5276541337370872"
+  },
+  "_npmUser": {
+    "name": "npeditto",
+    "email": "npeditto@unime.it"
+  },
+  "_npmVersion": "4.5.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "@mdslab/wstun",
+    "scope": "@mdslab",
+    "escapedName": "@mdslab%2fwstun",
+    "name": "@mdslab/wstun",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://127.0.1.1:8888/@mdslab/wstun/-/wstun-1.0.3.tgz",
+  "_shasum": "d1b29745b6c4afcb0deea397e9db45776e7f3d47",
+  "_shrinkwrap": null,
+  "_spec": "@mdslab/wstun",
+  "_where": "/media/datos/app/nodejs/proxyclient",
+  "author": {
+    "name": "Nicola Peditto",
+    "email": "npeditto@unime.it"
+  },
+  "bin": {
+    "wstun": "./bin/wstun.js"
+  },
+  "bugs": {
+    "url": "https://github.com/MDSLab/wstun/issues"
+  },
+  "contributors": [
+    {
+      "name": "Dario Bruneo",
+      "email": "dbruneo@unime.it"
+    },
+    {
+      "name": "Francesco Longo",
+      "email": "flongo@unime.it"
+    },
+    {
+      "name": "Giovanni Merlino",
+      "email": "gmerlino@unime.it"
+    },
+    {
+      "name": "Andrea Rocco Lotronto",
+      "email": "andrealotronto@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "node-uuid": "<=1.4.7",
+    "optimist": ">=0.6.1",
+    "under_score": ">=0.1.0",
+    "websocket": ">=1.0.17"
+  },
+  "description": "A set of tools to establish TCP tunnels (or TCP reverse tunnels) over WebSocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "d1b29745b6c4afcb0deea397e9db45776e7f3d47",
+    "tarball": "http://127.0.1.1:8888/@mdslab/wstun/-/wstun-1.0.3.tgz"
+  },
+  "gitHead": "90118cb6d5a91057790563cfd9e9bc86ad06c568",
+  "homepage": "https://github.com/MDSLab/wstun",
+  "keywords": [
+    "tunnel",
+    "reverse",
+    "WebSocket"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "flongo82",
+      "email": "flongo@unime.it"
+    },
+    {
+      "name": "npeditto",
+      "email": "npeditto@unime.it"
+    },
+    {
+      "name": "gmerlino",
+      "email": "gmerlino@unime.it"
+    }
+  ],
+  "name": "@mdslab/wstun",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MDSLab/wstun.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
+}
