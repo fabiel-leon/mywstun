@@ -23,6 +23,7 @@ var portTunnel, argv, client, host, localport, optimist, port, server, wsHost, _
 
 var _ = require("under_score");
 var throng = require("throng");
+var crypto = require("crypto");
 
 optimist = require('optimist').usage("Tunnels and reverse tunnels over WebSocket.\n" +
         "\nUsage: https://github.com/MDSLab/wstun/blob/master/readme.md")
@@ -36,24 +37,73 @@ optimist = require('optimist').usage("Tunnels and reverse tunnels over WebSocket
 
 argv = optimist.argv;
 
-throng(startWorker);
+//throng(startWorker);
 
 function startWorker(id) {
-
-    var wst = require("../lib/wrapper");
-
 //firewall enterprise proxy http
-    if (argv.p) {
-        var prox = require('url').parse(argv.p);
-        var globaltunnel = require("global-tunnel");
-        globaltunnel.initialize({
-            host: prox.hostname,
-            port: parseInt(prox.port),
-//                proxyAuth: 'userId:password', // optional authentication
-            sockets: 50 // optional pool size for each http and https
-        });
+//    if (argv.p) {
+//        var prox = require('url').parse(argv.p);
+//        console.log("prox", prox);
+////        globaltunnel.initialize();
+//        var globaltunnel = require("global-tunnel-ng");
+//        globaltunnel.initialize({
+//            host: prox.hostname,
+//            port: parseInt(prox.port),
+//            protocol: prox.protocol,
+////                proxyAuth: 'userId:password', // optional authentication
+//            sockets: 50 // optional pool size for each http and https
+//        });
+//    }
+     var fs = require('fs');
+     var https = require('https');
+     var tunnelagent = require('tunnel-agent');
+     var request = require('request');
+
+//    .on("socket", function (socket) {
+//        console.log('emited removed');
+// //                socket.emit("agentRemove");
+//    }).on('error', function (e) {
+//        console.error(e);
+//    });
+   // req.on("upgrade", function (res, socket, head) {
+   //     console.log('upgrade', res, head);
+   // });
+
+    function reqq(evt) {
+        var r = request.defaults({'proxy': "http://192.164.1.57:8080", forever: true});
+
+        r({
+            uri: 'https://seg1ero.cloudno.de/?dst=google.com:443',
+            method: 'GET',
+            headers: {
+                'Upgrade': 'websocket',
+                'Connection': 'Upgrade',
+                'Sec-WebSocket-Version': "13",
+                'Sec-WebSocket-Key': this.base64nonce,
+                'Sec-WebSocket-Protocol': 'tunnel-protocol',
+                "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Mobile Safari/537.36"
+            }
+        }, function (error, response, body) {
+            console.log('stats: ' + response.statusCode);
+            console.log('headers: ' + response.headers);
+        }).on('response', function (response) {
+            console.log(response.statusCode); // 200
+            console.log(response.headers['content-type']); // 'image/png'
+            console.log((response));
+        }).on("socket", function (socket) {
+            console.log('emited removed');
+            socket.emit("agentRemove");
+        }).on("connect", function (evt) {
+            console.log('evt', evt);
+        }).on("end", function (evt) {
+            console.log('end', evt);
+        }).on("upgrade", function (res, socket, head) {
+            console.log('upgrade', res, head);
+        }).pipe(fs.createWriteStream("fsdfsd"));
     }
 
+    var wst = require("../lib/wrapper");
+    console.log(argv.p);
     if (argv.s && !argv.r) {
 
         // WS tunnel server side
@@ -80,17 +130,16 @@ function startWorker(id) {
     } else if (argv.t) {
 
         // WS tunnel client side
-
-
         client = new wst.client;
 
         wsHost = _.last(argv._);
+        console.log('wsHost',wsHost);
         _ref1 = argv.t.split(":"), localport = _ref1[0], host = _ref1[1], port = _ref1[2];
 
         if (host && port) {
-            client.start(localport, wsHost, "" + host + ":" + port);
+            client.start(localport, wsHost, "" + host + ":" + port, argv.p);
         } else {
-            client.start(localport, wsHost);
+            client.start(localport, wsHost, void 0, argv.p);
         }
 
 
@@ -127,6 +176,5 @@ function startWorker(id) {
     }
 
 //    console.log(`Started worker ${id}`);
-
-
 }
+startWorker();
