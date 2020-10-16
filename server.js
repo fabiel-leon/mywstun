@@ -1,9 +1,9 @@
-var wst = require("./lib/wrapper");
+const wst = require('./lib/wrapper');
 
-var server_opts = {
-    ssl: false,
-    key: '',
-    cert: ''
+const server_opts = {
+  ssl: false,
+  key: '',
+  cert: '',
 };
 
 server = new wst.server(server_opts);
