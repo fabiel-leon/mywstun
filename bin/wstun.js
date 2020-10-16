@@ -109,8 +109,8 @@ function startWorker(id) {
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Mobile Safari/537.36',
       },
     }, (error, response, body) => {
-      console.log(`stats: ${response.statusCode}`);
-      console.log(`headers: ${response.headers}`);
+      console.log('stats: ' + response.statusCode);
+      console.log('headers: ' + response.headers);
     }).on('response', (response) => {
       console.log(response.statusCode); // 200
       console.log(response.headers['content-type']); // 'image/png'
@@ -167,7 +167,7 @@ function startWorker(id) {
     // });
     // updserver(localport);
     if (host && port) {
-      client.start(localport, wsHost, `${host}:${port}`, argv.p, argv.u);
+      client.start(localport, wsHost, host + ':' + port, argv.p, argv.u);
     } else {
       client.start(localport, wsHost, void 0, argv.p, argv.u);
     }
@@ -190,13 +190,11 @@ function startWorker(id) {
       client = new wst.client_reverse();
       wsHost = _.last(argv._);
       _ref1 = argv.r.split(':'), portTunnel = _ref1[0], host = _ref1[1], port = _ref1[2];
-      client.start(portTunnel, wsHost, `${host}:${port}`);
+      client.start(portTunnel, wsHost, host + ':' + port);
     }
   } else {
     // Wrong options
     return console.log(optimist.help());
   }
-
-  //    console.log(`Started worker ${id}`);
 }
 startWorker();
