@@ -129,3 +129,13 @@ Examples about how to run a reverse tunnel client:
 ./wstun.js -r 6666:2.2.2.2:33 wss://server:8080 -p http://proxy:port
 ```
 In the above examples, the client asks the server to open a TCP server on port 6666 and all connections on this port are tunneled to the client that is directely connected to 2.2.2.2:33.
+
+Autofact
+
+
+FinchVPN
+
+```bash
+    #puerto local 5000, host destino final 209.141.45.198, puerto destino final 443,  servidor intermediario usando websoket wss://seg1ero.cloudno.de
+node bin/wstun -t 5000:209.141.45.198:443 wss://seg1ero.cloudno.de
+```
