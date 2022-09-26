@@ -19,7 +19,7 @@
     "morgan": "^1.10.0",
     "node-uuid": "<=1.4.7",
     "optimist": ">=0.6.1",
-    "proxy-agent": "^2.3.1",
+    "proxy-agent": "^5.0.0",
     "request": "^2.88.2",
     "serve-favicon": "^2.5.0",
     "spdy": "^3.4.7",
